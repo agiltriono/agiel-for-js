@@ -1,3 +1,12 @@
+// smart link
+function smartLink(){this.keywdHref=new Object();this.add=function(keyword,href){if(keyword.substr(0,1)!=&quot;&quot;){keyword=&quot;&quot;+keyword}
+this.keywdHref[keyword]=href}
+this.createAnchor=function(){var objs=document.getElementsByTagName(&quot;div&quot;);for(var i=0;i&lt;objs.length;i++){var obj=objs[i];if(obj.className.indexOf(&quot;post-body&quot;)&gt;-1){var content=obj.innerHTML;for(var keyword in this.keywdHref){var href=this.keywdHref[keyword];var newstr=content.replace(keyword,&quot;&lt;a href=&#39;&quot;+href+&quot;&#39;&gt;&quot;+keyword+&quot;&lt;/a&gt;&quot;,&quot;gi&quot;);obj.innerHTML=newstr;content=newstr}}}}
+this.startScript=function(){var onLoad=window.onload;window.onload=function(){if(onLoad){onLoad()}
+setTimeout(&quot;f.createAnchor()&quot;,100)}}}
+var f = new smartLink();
+f.add(&quot;Agiel Triono&quot;, &quot;https://agieltriono.blogspot.com/&quot;);
+f.startScript();
 //<![CDATA[
 // safelink
 var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(input){var output="";var chr1,chr2,chr3,enc1,enc2,enc3,enc4;var i=0;input=Base64._utf8_encode(input);while(i<input.length){chr1=input.charCodeAt(i++);chr2=input.charCodeAt(i++);chr3=input.charCodeAt(i++);enc1=chr1>>2;enc2=((chr1&3)<<4)|(chr2>>4);enc3=((chr2&15)<<2)|(chr3>>6);enc4=chr3&63;if(isNaN(chr2)){enc3=enc4=64;}else if(isNaN(chr3)){enc4=64;}
@@ -27,13 +36,4 @@ if(a_to_vk)
 {a_to_vk.innerHTML+=a_to_va;}}
 function a_to_fa()
 {var a_to_vf=new Array();protected_links=protected_links.replace(" ","");a_to_vf=protected_links.split(",");return a_to_vf;}
-// smart link
-function smartLink(){this.keywdHref=new Object();this.add=function(keyword,href){if(keyword.substr(0,1)!=&quot;&quot;){keyword=&quot;&quot;+keyword}
-this.keywdHref[keyword]=href}
-this.createAnchor=function(){var objs=document.getElementsByTagName(&quot;div&quot;);for(var i=0;i&lt;objs.length;i++){var obj=objs[i];if(obj.className.indexOf(&quot;post-body&quot;)&gt;-1){var content=obj.innerHTML;for(var keyword in this.keywdHref){var href=this.keywdHref[keyword];var newstr=content.replace(keyword,&quot;&lt;a href=&#39;&quot;+href+&quot;&#39;&gt;&quot;+keyword+&quot;&lt;/a&gt;&quot;,&quot;gi&quot;);obj.innerHTML=newstr;content=newstr}}}}
-this.startScript=function(){var onLoad=window.onload;window.onload=function(){if(onLoad){onLoad()}
-setTimeout(&quot;f.createAnchor()&quot;,100)}}}
-var f = new smartLink();
-f.add(&quot;Agiel Triono&quot;, &quot;https://agieltriono.blogspot.com/&quot;);
-f.startScript();
 //]]>
