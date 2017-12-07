@@ -1,0 +1,80 @@
+#notify-holster {
+  position: fixed;
+  top: 15px;
+  right:15px;
+  width: 100%;
+  max-width: 350px;
+  z-index:99999998;
+}
+
+#notify-holster {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.notify {position: relative;right: -360px;top: 15px;margin-bottom:20px;width: 100%;@include prefixer(border-radius, 4px, webkit moz spec);-webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.25);box-shadow: 0 0 10px 0 rgba(0,0,0,0.25);opacity:0;z-index:99999999;border:1px solid;
+
+    &:last-child {margin-bottom:0;}
+    &.notify-default {background-color:$light_grey;border:1px solid darken($light_grey, 5%);}
+
+    #notify-wrapper {position:relative;}
+
+    &.notify-with-icon {
+        .notify-body {
+            .notify-body-text{padding-left:74px;}
+        }
+    }
+
+    .notify-body {padding:15px;font-size:13px;min-height:54px;@include prefixer(border-radius, 4px, webkit moz spec);
+        
+        .notification-body-icon {float:left;width:64px;height:54px;margin-right:10px;vertical-align:middle;display:inline-block;position:relative;text-align:center;font-size:32px;
+            i {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+        }
+
+        .notify-body-title {display:block;font-weight:700;}
+
+
+    }
+
+    .notify-action-buttons {width:16px;display:inline-block;position:absolute;top:2px;right:2px;
+        .notify-square-button {background-position: center;background-size: 8px;background-repeat: no-repeat;display: block;height: 16px;width: 16px;
+            &.notify-close-button {display:block;width:16px;height:16px;background-image:url($close_black);}
+        }
+    }
+
+    /*
+     * Success styles
+     */
+    &.notify-success {background-color:$green;border-color:$dark_green;
+        .notify-body, .notify-body * {color:white;}
+        .notify-action-buttons {
+            .notify-square-button {
+                &.notify-close-button {background-image:url($close_white);}
+            }
+        }
+    }
+
+    /**
+     * Error styles
+     */
+    &.notify-error {background-color:$red;border-color:$dark_red;
+        .notify-body, .notify-body * {color:white;}
+        .notify-action-buttons {
+            .notify-square-button {
+                &.notify-close-button {background-image:url($close_white);}
+            }
+        }
+    }
+
+    /**
+     * Info styles
+     */
+    &.notify-info {background-color:$blue;border-color:$dark_blue;
+        .notify-body, .notify-body * {color:white;}
+        .notify-action-buttons {
+            .notify-square-button {
+                &.notify-close-button {background-image:url($close_white);}
+            }
+        }
+    }
+
+}

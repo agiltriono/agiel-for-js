@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery jsnotify Plugin Demos</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="dist/css/notify.css" rel="stylesheet" type="text/css">
+<link href="dist/css/themes/flat.css" rel="stylesheet" type="text/css">
+<style>
+body { background-color:#f7f7f7; font-family:'Roboto';}
+.container { margin:70px auto;}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>jQuery jsnotify Plugin Demos</h1>
+<div class="jquery-script-ads" style="margin:50px auto;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<button class="btn btn-primary n1">Default</button>
+<button class="btn btn-primary n2">Success</button>
+<button class="btn btn-primary n3">Info</button>
+<button class="btn btn-primary n4">Error</button>
+<button class="btn btn-primary n5">Flat Theme</button>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="dist/js/notify.js"></script>
+<script>
+var options1 = {
+    'title': 'Default',
+    'message': 'Default Notification!',
+    'icon': 'check',
+};
+
+var n1 = new notify(options1);
+
+$( ".n1" ).click(function() {
+  n1.show();
+});
+
+var options2 = {
+    'title': 'Success',
+	'style': 'success',
+    'message': 'I am a Notification!',
+    'icon': 'check',
+};
+
+var n2 = new notify(options2);
+
+$( ".n2" ).click(function() {
+  n2.show();
+});
+
+var options3 = {
+    'title': 'Success',
+	'style': 'info',
+    'message': 'I am a Notification!',
+    'icon': 'info',
+};
+
+var n3 = new notify(options3);
+
+$( ".n3" ).click(function() {
+  n3.show();
+});
+
+var options4 = {
+    'title': 'Error',
+	'style': 'error',
+    'message': 'I am a Notification!',
+    'icon': 'warning',
+};
+
+var n4 = new notify(options4);
+
+$( ".n4" ).click(function() {
+  n4.show();
+});
+
+var options5 = {
+    'title': 'Flat Theme',
+    'message': 'I am a Notification!',
+    'icon': 'wifi',
+	'theme': 'flat'
+};
+
+var n5 = new notify(options5);
+
+$( ".n5" ).click(function() {
+  n5.show();
+});
+
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

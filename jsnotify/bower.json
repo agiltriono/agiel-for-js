@@ -1,0 +1,29 @@
+{
+  "name": "jsnotify",
+  "homepage": "https://github.com/mykemeynell/jsnotify",
+  "authors": [
+    "Myke Howells <iam@mykehowells.com>"
+  ],
+  "description": "Notification script built with jQuery and CSS",
+  "main": "",
+  "keywords": [
+    "notify",
+    "js",
+    "javascript",
+    "jquery",
+    "web",
+    "notifications"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "fontawesome": "^4.7.0"
+  }
+}
