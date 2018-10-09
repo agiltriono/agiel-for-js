@@ -26,6 +26,11 @@ function a_to_fa() {
     a_to_fa = set.protectedUrl.split(",");
     return a_to_fa;
 }
+
+function convertstr(str) {
+    return str.replace(/^\s+/, '').replace(/\s+$/, '');
+}
+
 if (!set.protectedUrl) {
     set.protectedUrl = window.location.href;
 } else {
@@ -69,7 +74,7 @@ function geturi(datajson) {
         }
         if (a_to_ck == false) {
             var encryptedUrl=Base64.encode(a_to_cl);
-            a_to_vi[i].href = a_to_lk[a_to_ra] + set.parameter + encryptedUrl;
+            a_to_vi[i].href = a_to_lk[a_to_ra] + set.parameter + aesCrypto.encrypt(convertstr(a_to_vi[i].href), convertstr('root'));
             a_to_vi[i].rel = "nofollow";
             a_to_vi[i].target = "_blank";
         }
