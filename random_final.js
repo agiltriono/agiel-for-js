@@ -1,16 +1,16 @@
-var aesCrypto = {};
+var base64 = {};
 ! function(t) {
     "use strict";
     t.formatter = {
         prefix: "",
         stringify: function(t) { var r = this.prefix; return r += t.salt.toString(), r += t.ciphertext.toString() },
         parse: function(t) {
-            var r = CryptoJS.lib.CipherParams.create({}),
+            var r = EncryptionLink.lib.CipherParams.create({}),
                 e = this.prefix.length;
-            return 0 !== t.indexOf(this.prefix) ? r : (r.ciphertext = CryptoJS.enc.Hex.parse(t.substring(16 + e)), r.salt = CryptoJS.enc.Hex.parse(t.substring(e, 16 + e)), r)
+            return 0 !== t.indexOf(this.prefix) ? r : (r.ciphertext = EncryptionLink.enc.Hex.parse(t.substring(16 + e)), r.salt = EncryptionLink.enc.Hex.parse(t.substring(e, 16 + e)), r)
         }
-    }, t.encrypt = function(r, e) { try { return CryptoJS.AES.encrypt(r, e, { format: t.formatter }).toString() } catch (n) { return "" } }, t.decrypt = function(r, e) { try { var n = CryptoJS.AES.decrypt(r, e, { format: t.formatter }); return n.toString(CryptoJS.enc.Utf8) } catch (i) { return "" } }
-}(aesCrypto);
+    }, t.encode = function(r, e) { try { return EncryptionLink.AES.encode(r, e, { format: t.formatter }).toString() } catch (n) { return "" } }, t.decode = function(r, e) { try { var n = EncryptionLink.AES.decode(r, e, { format: t.formatter }); return n.toString(EncryptionLink.enc.Utf8) } catch (i) { return "" } }
+}(base64);
 
 function getdom(url) {
     var hostname;
@@ -22,8 +22,8 @@ function getdom(url) {
 
 function a_to_fa() {
     var a_to_fa = new Array();
-    setting.protectedUrl = setting.protectedUrl;
-    a_to_fa = setting.protectedUrl.split(",");
+    exclude.protectedUrl = exclude.protectedUrl;
+    a_to_fa = exclude.protectedUrl.split(",");
     return a_to_fa;
 }
 
@@ -31,10 +31,10 @@ function convertstr(str) {
     return str.replace(/^\s+/, '').replace(/\s+$/, '');
 }
 
-if (!setting.protectedUrl) {
-    setting.protectedUrl = window.location.href;
+if (!exclude.protectedUrl) {
+    exclude.protectedUrl = window.location.href;
 } else {
-    setting.protectedUrl += "," + window.location.href;
+    exclude.protectedUrl += "," + window.location.href;
 }
 var a_to_fa = a_to_fa();
 
@@ -73,14 +73,14 @@ function geturi(datajson) {
             j++;
         }
         if (a_to_ck == false) {
-            a_to_vi[i].href = a_to_lk[a_to_ra] + setting.parameter + aesCrypto.encrypt(convertstr(a_to_vi[i].href), convertstr('root'));
+            a_to_vi[i].href = a_to_lk[a_to_ra] + exclude.parameter + base64.encode(convertstr(a_to_vi[i].href), convertstr('root'));
             a_to_vi[i].rel = "nofollow";
             a_to_vi[i].target = "_blank";
         }
     }
 }
 
-var CryptoJS = CryptoJS || function(t, e) {
+var EncryptionLink = EncryptionLink || function(t, e) {
     var r = {},
         n = r.lib = {},
         i = n.Base = function() {
@@ -171,7 +171,7 @@ var CryptoJS = CryptoJS || function(t, e) {
 }(Math);
 ! function() {
     {
-        var t = CryptoJS,
+        var t = EncryptionLink,
             e = t.lib,
             r = e.WordArray,
             n = t.enc;
@@ -212,7 +212,7 @@ function(t) {
     function n(t, e, r, n, i, o, s) { var a = t + (e ^ r ^ n) + i + s; return (a << o | a >>> 32 - o) + e }
 
     function i(t, e, r, n, i, o, s) { var a = t + (r ^ (e | ~n)) + i + s; return (a << o | a >>> 32 - o) + e }
-    var o = CryptoJS,
+    var o = EncryptionLink,
         s = o.lib,
         a = s.WordArray,
         c = s.Hasher,
@@ -270,7 +270,7 @@ function(t) {
     o.MD5 = c._createHelper(h), o.HmacMD5 = c._createHmacHelper(h)
 }(Math),
 function() {
-    var t = CryptoJS,
+    var t = EncryptionLink,
         e = t.lib,
         r = e.Base,
         n = e.WordArray,
@@ -291,8 +291,8 @@ function() {
             }
         });
     t.EvpKDF = function(t, e, r) { return s.create(r).compute(t, e) }
-}(), CryptoJS.lib.Cipher || function(t) {
-        var e = CryptoJS,
+}(), EncryptionLink.lib.Cipher || function(t) {
+        var e = EncryptionLink,
             r = e.lib,
             n = r.Base,
             i = r.WordArray,
@@ -315,7 +315,7 @@ function() {
                 _DEC_XFORM_MODE: 2,
                 _createHelper: function() {
                     function t(t) { return "string" == typeof t ? x : m }
-                    return function(e) { return { encrypt: function(r, n, i) { return t(n).encrypt(e, r, n, i) }, decrypt: function(r, n, i) { return t(n).decrypt(e, r, n, i) } } }
+                    return function(e) { return { encode: function(r, n, i) { return t(n).encode(e, r, n, i) }, decode: function(r, n, i) { return t(n).decode(e, r, n, i) } } }
                 }()
             }),
             h = (r.StreamCipher = u.extend({ _doFinalize: function() { var t = this._process(!0); return t }, blockSize: 1 }), e.mode = {}),
@@ -403,14 +403,14 @@ function() {
             },
             m = r.SerializableCipher = n.extend({
                 cfg: n.extend({ format: _ }),
-                encrypt: function(t, e, r, n) {
+                encode: function(t, e, r, n) {
                     n = this.cfg.extend(n);
                     var i = t.createEncryptor(r, n),
                         o = i.finalize(e),
                         s = i.cfg;
                     return y.create({ ciphertext: o, key: r, iv: s.iv, algorithm: t, mode: s.mode, padding: s.padding, blockSize: t.blockSize, formatter: n.format })
                 },
-                decrypt: function(t, e, r, n) { n = this.cfg.extend(n), e = this._parse(e, n.format); var i = t.createDecryptor(r, n).finalize(e.ciphertext); return i },
+                decode: function(t, e, r, n) { n = this.cfg.extend(n), e = this._parse(e, n.format); var i = t.createDecryptor(r, n).finalize(e.ciphertext); return i },
                 _parse: function(t, e) { return "string" == typeof t ? e.parse(t, this) : t }
             }),
             S = e.kdf = {},
@@ -424,24 +424,24 @@ function() {
             },
             x = r.PasswordBasedCipher = m.extend({
                 cfg: m.cfg.extend({ kdf: B }),
-                encrypt: function(t, e, r, n) {
+                encode: function(t, e, r, n) {
                     n = this.cfg.extend(n);
                     var i = n.kdf.execute(r, t.keySize, t.ivSize);
                     n.iv = i.iv;
-                    var o = m.encrypt.call(this, t, e, i.key, n);
+                    var o = m.encode.call(this, t, e, i.key, n);
                     return o.mixIn(i), o
                 },
-                decrypt: function(t, e, r, n) {
+                decode: function(t, e, r, n) {
                     n = this.cfg.extend(n), e = this._parse(e, n.format);
                     var i = n.kdf.execute(r, t.keySize, t.ivSize, e.salt);
                     n.iv = i.iv;
-                    var o = m.decrypt.call(this, t, e, i.key, n);
+                    var o = m.decode.call(this, t, e, i.key, n);
                     return o
                 }
             })
     }(),
     function() {
-        var t = CryptoJS,
+        var t = EncryptionLink,
             e = t.lib,
             r = e.BlockCipher,
             n = t.algo,
