@@ -22,8 +22,8 @@ function getdom(url) {
 
 function a_to_fa() {
     var a_to_fa = new Array();
-    set.protectedUrl = set.protectedUrl;
-    a_to_fa = set.protectedUrl.split(",");
+    setting.protectedUrl = setting.protectedUrl;
+    a_to_fa = setting.protectedUrl.split(",");
     return a_to_fa;
 }
 
@@ -31,10 +31,10 @@ function convertstr(str) {
     return str.replace(/^\s+/, '').replace(/\s+$/, '');
 }
 
-if (!set.protectedUrl) {
-    set.protectedUrl = window.location.href;
+if (!setting.protectedUrl) {
+    setting.protectedUrl = window.location.href;
 } else {
-    set.protectedUrl += "," + window.location.href;
+    setting.protectedUrl += "," + window.location.href;
 }
 var a_to_fa = a_to_fa();
 
@@ -73,7 +73,8 @@ function geturi(datajson) {
             j++;
         }
         if (a_to_ck == false) {
-            a_to_vi[i].href = a_to_lk[a_to_ra] + set.parameter + aesCrypto.encrypt(convertstr(a_to_vi[i].href), convertstr('root'));
+            var encryptedUrl=Base64.encode(a_to_cl);
+            a_to_vi[i].href = a_to_lk[a_to_ra] + setting.parameter + aesCrypto.encrypt(convertstr(a_to_vi[i].href), convertstr('root'));
             a_to_vi[i].rel = "nofollow";
             a_to_vi[i].target = "_blank";
         }
