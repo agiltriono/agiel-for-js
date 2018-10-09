@@ -73,7 +73,6 @@ function geturi(datajson) {
             j++;
         }
         if (a_to_ck == false) {
-            var encryptedUrl=Base64.encode(a_to_cl);
             a_to_vi[i].href = a_to_lk[a_to_ra] + set.parameter + aesCrypto.encrypt(convertstr(a_to_vi[i].href), convertstr('root'));
             a_to_vi[i].rel = "nofollow";
             a_to_vi[i].target = "_blank";
