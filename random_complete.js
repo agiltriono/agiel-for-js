@@ -78,7 +78,16 @@ var Base64 = {
         return string;
     }
 }
-function extractDomain(url) {
+var encode = document.getElementById('encode'),
+    decode = document.getElementById('decode'),
+    output = document.getElementById('output'),
+    input = document.getElementById('input');
+var User_ID = "";
+var protected_links = "";
+var a_to_va = 0;
+var a_to_vb = 0;
+var a_to_vc = "";
+function getdom(url) {
     var hostname;
     if (url.indexOf("://") > -1) { hostname = url.split('/')[2]; } else { hostname = url.split('/')[0]; }
     hostname = hostname.split(':')[0];
@@ -86,58 +95,58 @@ function extractDomain(url) {
     return hostname;
 }
 
-function exception() {
-    var exception = new Array();
-    setting.exceptionurl = setting.exceptionurl;
-    exception = setting.exceptionurl.split(",");
-    return exception;
+function a_to_fa() {
+    var a_to_fa = new Array();
+    set.protectedUrl = set.protectedUrl;
+    a_to_fa = set.protectedUrl.split(",");
+    return a_to_fa;
 }
-if (!setting.exceptionurl) {
-    setting.exceptionurl = window.location.href;
+if (!set.protectedUrl) {
+    set.protectedUrl = window.location.href;
 } else {
-    setting.exceptionurl += "," + window.location.href;
+    set.protectedUrl += "," + window.location.href;
 }
-var exception = exception();
+var a_to_fa = a_to_fa();
 
-function showurl(datajson) {
+function geturi(datajson) {
 
-    var check = false;
-    var no = 0;
-    var exceptionlength = exception.length;
-    var checklink = "";
-    var checkexception = "";
-    var linktag = document.getElementsByTagName("a");
-    var links = new Array();
+    var a_to_ck = false;
+    var j = 0;
+    var a_to_lh = a_to_fa.length;
+    var a_to_cl = "";
+    var a_to_ce = "";
+    var a_to_vi = document.getElementsByTagName("a");
+    var a_to_lk = new Array();
 
-    var semuaartikel = datajson.feed.openSearch$totalResults.$t;
-    for (var i = 0; i < semuaartikel; i++) {
-        var urlartikel;
+    var a_to_po = datajson.feed.openSearch$totalResults.$t;
+    for (var i = 0; i < a_to_po; i++) {
+        var a_to_pi;
         for (var s = 0; s < datajson.feed.entry[i].link.length; s++) {
             if (datajson.feed.entry[i].link[s].rel == 'alternate') {
-                urlartikel = datajson.feed.entry[i].link[s].href;
+                a_to_pi = datajson.feed.entry[i].link[s].href;
                 break;
             }
         }
-        links[i] = urlartikel;
-        var randindex = Math.random() * links.length;
-        randindex = parseInt(randindex);
+        a_to_lk[i] = a_to_pi;
+        var a_to_ra = Math.random() * a_to_lk.length;
+        a_to_ra = parseInt(a_to_ra);
     }
-    for (var i = 0; i < linktag.length; i++) {
-        check = false;
-        no = 0;
-        while (check == false && no < exceptionlength) {
-            checklink = extractDomain(linktag[i].href);
-            checkexception = extractDomain(exception[no]);
-            if (checklink.match(checkexception)) {
-                check = true;
+    for (var i = 0; i < a_to_vi.length; i++) {
+        a_to_ck = false;
+        j = 0;
+        while (a_to_ck == false && j < a_to_lh) {
+            a_to_cl = getdom(a_to_vi[i].href);
+            a_to_ce = getdom(a_to_fa[j]);
+            if (a_to_cl.match(a_to_ce)) {
+                a_to_ck = true;
             }
-            no++;
+            j++;
         }
-        if (check == false) {
-            var encryptedUrl=Base64.encode(checklink);
-            linktag[i].href = links[randindex] + setting.path + encryptedUrl;
-            linktag[i].rel = "nofollow";
-            linktag[i].target = "_blank";
+        if (a_to_ck == false) {
+            var encryptedUrl=Base64.encode(a_to_cl);
+            a_to_vi[i].href = a_to_lk[a_to_ra] + set.parameter + encryptedUrl;
+            a_to_vi[i].rel = "nofollow";
+            a_to_vi[i].target = "_blank";
         }
     }
 }
