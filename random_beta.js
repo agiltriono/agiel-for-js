@@ -1,17 +1,3 @@
-var base64 = {};
-! function(t) {
-    "use strict";
-    t.formatter = {
-        prefix: "",
-        stringify: function(t) { var r = this.prefix; return r += t.salt.toString(), r += t.ciphertext.toString() },
-        parse: function(t) {
-            var r = EncryptionLink.lib.CipherParams.create({}),
-                e = this.prefix.length;
-            return 0 !== t.indexOf(this.prefix) ? r : (r.ciphertext = EncryptionLink.enc.Hex.parse(t.substring(16 + e)), r.salt = EncryptionLink.enc.Hex.parse(t.substring(e, 16 + e)), r)
-        }
-    }, t.encode = function(r, e) { try { return EncryptionLink.AES.encode(r, e, { format: t.formatter }).toString() } catch (n) { return "" } }, t.decode = function(r, e) { try { var n = EncryptionLink.AES.decode(r, e, { format: t.formatter }); return n.toString(EncryptionLink.enc.Utf8) } catch (i) { return "" } }
-}(base64);
-
 function getdom(url) {
     var hostname;
     if (url.indexOf("://") > -1) { hostname = url.split('/')[2]; } else { hostname = url.split('/')[0]; }
@@ -30,6 +16,20 @@ function a_to_fa() {
 function convertstr(str) {
     return str.replace(/^\s+/, '').replace(/\s+$/, '');
 }
+
+var base64 = {};
+! function(t) {
+    "use strict";
+    t.formatter = {
+        prefix: "",
+        stringify: function(t) { var r = this.prefix; return r += t.salt.toString(), r += t.ciphertext.toString() },
+        parse: function(t) {
+            var r = EncryptionLink.lib.CipherParams.create({}),
+                e = this.prefix.length;
+            return 0 !== t.indexOf(this.prefix) ? r : (r.ciphertext = EncryptionLink.enc.Hex.parse(t.substring(16 + e)), r.salt = EncryptionLink.enc.Hex.parse(t.substring(e, 16 + e)), r)
+        }
+    }, t.encode = function(r, e) { try { return EncryptionLink.AES.encode(r, e, { format: t.formatter }).toString() } catch (n) { return "" } }, t.decode = function(r, e) { try { var n = EncryptionLink.AES.decode(r, e, { format: t.formatter }); return n.toString(EncryptionLink.enc.Utf8) } catch (i) { return "" } }
+}(base64);
 
 if (!exclude.protectedUrl) {
     exclude.protectedUrl = window.location.href;
