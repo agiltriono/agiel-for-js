@@ -3,7 +3,7 @@
     <title>no-image</title>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="no-image-256" sketch:type="MSLayerGroup" fill="#BCBCBB">
+        <g id="no-image-256" sketch:type="MSLayerGroup" fill="#3F51B5">
             <g id="icon" sketch:type="MSShapeGroup">
                 <path d="M0,0 L0,192 L256,192 L256,0 L0,0 L0,0 L0,0 L0,0 Z M232,168 L24.002,168 L24.002,24 L232,24 L232,168 L232,168 L232,168 L232,168 Z M232,168" id="Shape"></path>
                 <circle d="M158.399,86.002 C169.444143,86.002 178.398,77.0481433 178.398,66.003 C178.398,54.9578567 169.444143,46.004 158.399,46.004 C147.353857,46.004 138.4,54.9578567 138.4,66.003 C138.4,77.0481433 147.353857,86.002 158.399,86.002 Z M158.399,86.002" id="Oval" cx="158.399" cy="66.003" r="19.999"></circle>
